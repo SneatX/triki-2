@@ -7,7 +7,9 @@
   background: #0f0f1a;
   border-radius: 20px;
   box-shadow: 0 0 0 1px rgba(99, 255, 200, 0.1), 0 24px 64px rgba(0, 0, 0, 0.6);
-  min-width: 400px;
+  width: 420px;
+  align-self: center;
+  margin: 40px auto;
 }
 
 .game-title {

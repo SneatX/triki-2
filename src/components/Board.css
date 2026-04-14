@@ -1,14 +1,14 @@
 .board {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: repeat(3, 100px);
   gap: 10px;
   padding: 16px;
   background: rgba(255, 255, 255, 0.03);
   border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.07);
-}
-
-.board-row {
-  display: flex;
-  gap: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  /* fixed total: 3*100 + 2*10 + 2*16 = 352px */
+  width: 352px;
+  height: 352px;
+  box-sizing: border-box;
 }
