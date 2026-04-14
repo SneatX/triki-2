@@ -2,7 +2,7 @@ import React from "react";
 import Square from "./Square";
 import "./Board.css";
 
-function Board({ squares, winningLine, onSquareClick }) {
+export function Board({ squares, winningLine, onSquareClick }) {
   const renderSquare = (i) => {
     const isWinning = winningLine && winningLine.includes(i);
     return (

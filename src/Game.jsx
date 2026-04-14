@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Board from "./Board";
+import { Board } from "./components/Board";
 import "./Game.css";
 
 /**
@@ -8,7 +8,7 @@ import "./Game.css";
  * @returns {object} - Un objeto con el ganador (X o O)
 */
 
-function calcuteWinner(squares) {
+function calculateWinner(squares) {
     const lines = [
         [0, 1, 2],
         [3, 4, 5],
@@ -22,20 +22,20 @@ function calcuteWinner(squares) {
 
     for (const [a, b, c] of lines) {
         if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-            return { winner: squares[a] };
+            return { winner: squares[a], line: [a, b, c] };
         }
     }
-    return null;
+    return {};
 }
 
-function Game() {
+export function Game() {
     const [squares, setSquares] = useState(Array(9).fill(null));
     const [xIsNext, setXIsNext] = useState(true);
     const [history, setHistory] = useState([Array(9).fill(null)]);
     const [gameMode, setGameMode] = useState("pvp");
     const [stepNumber, setStepNumber] = useState(0);
 
-    const { winner, line } = calcuteWinner(squares)
+    const { winner, line } = calculateWinner(squares)
     const isDraw = !winner && squares.every(square => square !== null);
 
     /**
@@ -55,7 +55,7 @@ function Game() {
 
         // modo contra computadora
 
-        if (gameMode === "computer" && !calcuteWinner(newSquares).winner && newSquares.every(s => s !== null) === false) {
+        if (gameMode === "computer" && !calculateWinner(newSquares).winner && newSquares.some(s => s === null)) {
             setTimeout(() => { makeComputerMove(newSquares) }, 500);
         }
     }
@@ -129,7 +129,7 @@ function Game() {
             </div>
             <Board
                 squares={squares}
-                onClick={handleClick}
+                onSquareClick={handleClick}
                 winningLine={line}
             />
 
